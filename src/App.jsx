@@ -57,7 +57,12 @@ function App() {
       }
 
       <input type="text" onChange={(e)=>{ setInput(e.target.value); console.log(input) }}/>
-      <button onClick={()=>{ 
+      <button onClick={()=>{
+        if(!input.trim()){
+          alert('내용을 입력해주세요!');
+          return;
+        }
+
         let copy = [...글제목];
         copy.unshift(input);
         글제목변경(copy);
