@@ -3,9 +3,9 @@ import './App.css'
 
 function App() {
 
-  let post = '강남 우동 맛집'
   let [글제목, 글제목변경] = useState(['남자 코트 추천', '강남 우동 맛집', '파이썬 독학']);
   let [따봉, 따봉변경] = useState([0, 0, 0]);
+  let [날짜, 날짜변경] = useState(['2월 17일', '2월 17일', '2월 17일'])
   let [modal, setModal] = useState(false);
   let [title, setTitle] = useState(0);
   let [input, setInput] = useState('');
@@ -41,22 +41,26 @@ function App() {
                   따봉변경(copy)
                 } }>👍</span> { 따봉[i] }
               </h4>
-              <p>2월 17일 발행</p>
+              <p>{날짜[i]} 발행</p>
               <button onClick={()=>{ 
                 let copy = [...글제목];
                 copy.splice(i, 1);
                 글제목변경(copy);
                 
                 let copy2 = [...따봉];
-                copy2.splice(i);
+                copy2.splice(i, 1);
                 따봉변경(copy2);
+
+                let copy3 = [...날짜];
+                copy3.splice(i, 1);
+                날짜변경(copy3);
               }}>삭제</button>
             </div>
           )
         })
       }
 
-      <input type="text" onChange={(e)=>{ setInput(e.target.value); console.log(input) }}/>
+      <input type="text" onChange={(e)=>{ setInput(e.target.value) }}/>
       <button onClick={()=>{
         if(!input.trim()){
           alert('내용을 입력해주세요!');
@@ -70,6 +74,14 @@ function App() {
         let copy2 = [...따봉];
         copy2.unshift(0);
         따봉변경(copy2);
+
+        let today = new Date();
+        let month = today.getMonth() + 1;
+        let date = today.getDate();
+        let copy3 = [...날짜];
+        copy3.unshift( month + '월 ' + date + '일');
+        날짜변경(copy3)
+
       }}>버튼</button>
       
       {
