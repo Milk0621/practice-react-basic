@@ -46,6 +46,10 @@ function App() {
                 let copy = [...글제목];
                 copy.splice(i, 1);
                 글제목변경(copy);
+                
+                let copy2 = [...따봉];
+                copy2.splice(i);
+                따봉변경(copy2);
               }}>삭제</button>
             </div>
           )
@@ -57,6 +61,10 @@ function App() {
         let copy = [...글제목];
         copy.unshift(input);
         글제목변경(copy);
+        
+        let copy2 = [...따봉];
+        copy2.unshift(0);
+        따봉변경(copy2);
       }}>버튼</button>
       
       {
